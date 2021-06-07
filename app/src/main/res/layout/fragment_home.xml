@@ -11,7 +11,7 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -65,11 +65,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:reverseLayout="true"
-                app:layoutManager="androidx.recyclerview.widget.RecyclerView"
-                tools:listitem="@layout/item_food_history"
-                />
+                tools:listitem="@layout/item_food_history" />
 
         </LinearLayout>
 
