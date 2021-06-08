@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
 
 }
 
@@ -41,8 +40,7 @@ android {
 
 dependencies {
 
-    //kotlin
-    // Kotlin
+    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$coreVersion"
 
@@ -63,12 +61,8 @@ dependencies {
     //room
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-
     testImplementation 'junit:junit:4.+'
 
-
-    //ui
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
 
     //Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0-alpha02'

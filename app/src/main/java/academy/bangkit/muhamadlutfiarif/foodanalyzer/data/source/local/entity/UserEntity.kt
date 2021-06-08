@@ -24,13 +24,14 @@ data class UserEntity(
     var totalFat: Int
 ): Parcelable
 
+
+
 data class UserWithFoods(
     @Embedded
     var user: UserEntity,
 
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "userId"
-    )
-    var foods: UserWithFoods
+    @Relation(parentColumn = "id", entityColumn = "user")
+    var foods: FoodEntity
 )
+
+
