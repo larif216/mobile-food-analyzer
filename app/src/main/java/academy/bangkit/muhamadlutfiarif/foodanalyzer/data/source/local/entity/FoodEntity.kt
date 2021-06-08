@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+
 @Parcelize
 @Entity(tableName = "food_table")
 data class FoodEntity(
