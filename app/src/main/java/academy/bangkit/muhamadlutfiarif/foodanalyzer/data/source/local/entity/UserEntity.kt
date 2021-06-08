@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 data class UserEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    var id: Int,
+    var id: Int = 0,
 
     @ColumnInfo(name = "total_calories")
     var totalCalories: Int,
@@ -24,13 +24,14 @@ data class UserEntity(
     var totalFat: Int
 ): Parcelable
 
+@Parcelize
 data class UserWithFoods(
     @Embedded
     var user: UserEntity,
 
     @Relation(
         parentColumn = "id",
-        entityColumn = "userId"
+        entityColumn = "user"
     )
-    var foods: UserWithFoods
-)
+    var foods: List<FoodEntity>
+): Parcelable

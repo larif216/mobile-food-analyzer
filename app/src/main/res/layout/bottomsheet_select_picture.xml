@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/bottomSheetStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/primaryLightColor"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/from_camera"
+        style="@style/BottomSheetItem"
+        android:text="@string/take_photo"
+        app:backgroundTint="@color/primaryColor"
+        app:icon="@drawable/ic_photo_camera_white_24dp"
+        app:iconPadding="12dp"
+        app:iconTint="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/from_gallery"
+        style="@style/BottomSheetItem"
+        android:text="@string/choose_from_gallery"
+        app:backgroundTint="@color/primaryColor"
+        app:icon="@drawable/ic_image_white_24dp"
+        app:iconPadding="12dp"
+        app:iconTint="@color/white" />
+
+
+</LinearLayout>
+
+

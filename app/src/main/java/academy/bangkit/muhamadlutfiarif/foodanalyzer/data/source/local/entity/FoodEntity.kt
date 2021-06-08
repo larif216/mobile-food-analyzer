@@ -10,7 +10,7 @@ import java.util.*
 @Parcelize
 @Entity(tableName = "food_table")
 data class FoodEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int,
 
@@ -27,7 +27,7 @@ data class FoodEntity(
     val fat: Int,
 
     @ColumnInfo(name = "date")
-    val date: Date,
+    val date: String,
 
     @ColumnInfo(name = "user")
     val userId: Int

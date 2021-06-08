@@ -1,5 +1,6 @@
 package academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local
 
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.FoodEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserWithFoods
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.room.FoodAnalyzerDao
@@ -17,4 +18,8 @@ class LocalDataSource private constructor(private val mFoodAnalyzerDao: FoodAnal
     fun getUser(): LiveData<UserEntity> = mFoodAnalyzerDao.getUser()
 
     fun getUserWithFoods(): LiveData<UserWithFoods> = mFoodAnalyzerDao.getUserWithFoods()
+
+    fun getNullFood(): LiveData<FoodEntity> = mFoodAnalyzerDao.getNullFood()
+
+    fun insertFood(food: FoodEntity) = mFoodAnalyzerDao.insertFood(food)
 }
