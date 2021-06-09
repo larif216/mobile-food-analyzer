@@ -27,6 +27,9 @@ data class FoodEntity(
     @ColumnInfo(name = "fat")
     val fat: Int,
 
+    @ColumnInfo(name = "carb")
+    val carb: Int,
+
     @ColumnInfo(name = "date")
     val date: String,
 

@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.R
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.FoodEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.databinding.FragmentHomeBinding
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.utils.CalProgressFormatter
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.viewmodel.ViewModelFactory
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.vo.Status
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -35,11 +38,20 @@ class HomeFragment : Fragment() {
 
             viewModel.getUserWithFoods().observe(viewLifecycleOwner, {
                if (it != null)  {
-                   Log.d("Isi It", it.data.toString())
                    when (it.status) {
                        Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
                        Status.SUCCESS -> {
                            binding.progressBar.visibility = View.GONE
+
+                           binding.calProgress.setProgressFormatter(CalProgressFormatter())
+                           binding.calProgress.max = it.data?.user!!.totalCalories
+                           binding.calProgress.progress = getTotalCalConsumed(it.data.foods)
+
+                           binding.tvEatenCal.text = getTotalCalConsumed(it.data.foods).toString()
+                           binding.fatProgress.text = getTotalFat(it.data.foods).toString() + " / 100gr"
+                           binding.proteinProgress.text = getTotalProtein(it.data.foods).toString() + " / 100gr"
+                           binding.carbProgress.text = getTotalCarb(it.data.foods).toString() + " / 100gr"
+
                            val foodListAdapter = FoodListAdapter(it.data?.foods)
                            foodListAdapter.notifyDataSetChanged()
 
@@ -57,5 +69,37 @@ class HomeFragment : Fragment() {
                }
             })
         }
+    }
+
+    private fun getTotalCarb(foods: List<FoodEntity>): Int {
+        var result = 0
+        for (i in foods) {
+            result += i.carb
+        }
+        return result
+    }
+
+    private fun getTotalProtein(foods: List<FoodEntity>): Int {
+        var result = 0
+        for (i in foods) {
+            result += i.proteins
+        }
+        return result
+    }
+
+    private fun getTotalFat(foods: List<FoodEntity>): Int {
+        var result = 0
+        for (i in foods) {
+            result += i.fat
+        }
+        return result
+    }
+
+    private fun getTotalCalConsumed(foods: List<FoodEntity>): Int {
+        var result = 0
+        for (i in foods) {
+            result += i.calories
+        }
+        return result
     }
 }

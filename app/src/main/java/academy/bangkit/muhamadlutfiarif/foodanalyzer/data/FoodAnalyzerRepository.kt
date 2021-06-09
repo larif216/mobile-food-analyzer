@@ -37,17 +37,7 @@ class FoodAnalyzerRepository private constructor(
                 remoteDataSource.getFoodInfo()
 
             public override fun saveCallResult(data: FoodResponse) {
-                val food = FoodEntity(
-                    0,
-                    data.name,
-                    data.calories,
-                    data.proteins,
-                    data.fat,
-                    "Rabu, 9 Juni 2021",
-                    0
-                )
 
-                localDataSource.insertFood(food)
             }
         }.asLiveData()
     }
