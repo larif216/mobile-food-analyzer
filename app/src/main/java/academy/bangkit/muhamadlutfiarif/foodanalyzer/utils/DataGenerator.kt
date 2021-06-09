@@ -15,7 +15,7 @@ class DataGenerator {
         fun getUser(): UserEntity {
             return UserEntity(
                     0,
-                    5500,
+                    1200,
                     1203,
                     1110,
                     139,

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.home.HomeFragment">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="80dp">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -21,20 +26,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,6 +43,7 @@
                 android:textColor="@color/primaryDarkColor" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -56,13 +56,198 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/dashboard_card"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="220dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:padding="16dp"
                 android:backgroundTint="@color/primaryColor"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/eaten_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Eaten"
+                            android:padding="0dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tv_eaten_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="220"
+                            android:padding="0dp"
+                            android:textSize="30sp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="#D2F210"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/eaten_cal"/>
+
+                        <TextView
+                            android:id="@+id/cal_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="cals"
+                            android:padding="0dp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="#D2F210"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_eaten_cal"/>
+
+                        <TextView
+                            android:id="@+id/burn_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Burned"
+                            android:padding="0dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/white"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/tv_burn_cal"/>
+
+                        <TextView
+                            android:id="@+id/tv_burn_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="220"
+                            android:padding="0dp"
+                            android:textSize="30sp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="#D2F210"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/burn_label"/>
+
+                        <TextView
+                            android:id="@+id/burn_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="cals"
+                            android:padding="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#D2F210"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.dinuscxj.progressbar.CircleProgressBar
+                            android:id="@+id/cal_progress"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:progress_style="solid_line"
+                            app:progress_text_color="@color/white"
+                            app:progress_text_size="16dp"
+                            app:progress_stroke_width="1dp"
+                            app:progress_start_degree="-90"
+                            app:drawBackgroundOutsideProgress="true"
+
+                            app:progress_shader="sweep"
+
+                            app:progress_stroke_cap="round"
+
+                            app:progress_blur_style="solid"
+                            app:progress_blur_radius="5dp"
+
+                            app:line_width="10dp"
+                            app:line_count="30"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+
+                        <TextView
+                            android:id="@+id/fat_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fat"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="24dp"
+                            app:layout_constraintStart_toEndOf="@id/cal_progress"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/fat_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="220 / 440 gr"
+                            android:textColor="#D2F210"
+                            android:layout_marginStart="24dp"
+                            app:layout_constraintStart_toEndOf="@id/cal_progress"
+                            app:layout_constraintTop_toBottomOf="@id/fat_label"/>
+
+                        <LinearLayout
+                            android:id="@+id/protein_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintStart_toEndOf="@id/cal_progress"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+
+                            <TextView
+                                android:id="@+id/protein_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Protein"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginStart="24dp"
+                                app:layout_constraintStart_toEndOf="@id/cal_progress"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+
+                            <TextView
+                                android:id="@+id/protein_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="220 / 440 gr"
+                                android:textColor="#D2F210"
+                                android:layout_marginStart="24dp"
+                                app:layout_constraintStart_toEndOf="@id/cal_progress"
+                                app:layout_constraintTop_toBottomOf="@id/protein_label"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/carb_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Carbs"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="24dp"
+                            app:layout_constraintStart_toEndOf="@id/cal_progress"
+                            app:layout_constraintBottom_toTopOf="@id/carb_progress"/>
+
+                        <TextView
+                            android:id="@+id/carb_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="220 / 440 gr"
+                            android:textColor="#D2F210"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginBottom="8dp"
+                            app:layout_constraintStart_toEndOf="@id/cal_progress"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- List Eaten Food -->
 
@@ -71,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/breakfast_label"
+                android:text="Food Consumed"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/primaryDarkColor" />
 
@@ -85,6 +270,5 @@
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
