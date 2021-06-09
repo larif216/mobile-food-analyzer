@@ -9,13 +9,19 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.R
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.FoodEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.databinding.FragmentHomeBinding
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.utils.CalProgressFormatter
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.utils.DataGenerator
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.viewmodel.ViewModelFactory
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.vo.Status
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class HomeFragment : Fragment() {
 
@@ -30,6 +36,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
@@ -42,6 +49,10 @@ class HomeFragment : Fragment() {
                        Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
                        Status.SUCCESS -> {
                            binding.progressBar.visibility = View.GONE
+
+                           val currentDateTime = LocalDateTime.now()
+                           binding.tvDate.text = currentDateTime.format(DateTimeFormatter.ofLocalizedDate(
+                               FormatStyle.FULL))
 
                            binding.calProgress.setProgressFormatter(CalProgressFormatter())
                            binding.calProgress.max = it.data?.user!!.totalCalories
