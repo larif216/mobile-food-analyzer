@@ -4,8 +4,8 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.Fo
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserWithFoods
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.room.FoodAnalyzerDao
+import android.util.Log
 import androidx.lifecycle.LiveData
-
 class LocalDataSource private constructor(private val mFoodAnalyzerDao: FoodAnalyzerDao) {
 
     companion object {
@@ -17,7 +17,10 @@ class LocalDataSource private constructor(private val mFoodAnalyzerDao: FoodAnal
 
     fun getUser(): LiveData<UserEntity> = mFoodAnalyzerDao.getUser()
 
-    fun getUserWithFoods(): LiveData<UserWithFoods> = mFoodAnalyzerDao.getUserWithFoods()
+    fun getUserWithFoods(): LiveData<UserWithFoods> {
+        Log.d("UserWithFood", mFoodAnalyzerDao.getUserWithFoods().value.toString())
+        return mFoodAnalyzerDao.getUserWithFoods()
+    }
 
     fun getNullFood(): LiveData<List<FoodEntity>> = mFoodAnalyzerDao.getNullFood()
 
@@ -27,3 +30,4 @@ class LocalDataSource private constructor(private val mFoodAnalyzerDao: FoodAnal
 
     fun insertFood(food: FoodEntity) = mFoodAnalyzerDao.insertFood(food)
 }
+
