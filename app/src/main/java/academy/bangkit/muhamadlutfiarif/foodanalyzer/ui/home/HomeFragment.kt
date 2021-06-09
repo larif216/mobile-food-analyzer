@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
                            foodListAdapter.notifyDataSetChanged()
 
                            with(binding.rvFood) {
-                               layoutManager = LinearLayoutManager(context)
+                               layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                                setHasFixedSize(true)
                                adapter = foodListAdapter
                            }

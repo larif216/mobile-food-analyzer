@@ -11,7 +11,7 @@ class FoodListAdapter(private val listItems: List<FoodEntity>?): RecyclerView.Ad
         fun bind(food: FoodEntity) {
             with(binding) {
                 tvName.text = food.name
-                tvCal.text = food.calories.toString()
+                tvCal.text = food.calories.toString() + " Cal"
             }
         }
     }
