@@ -46,6 +46,7 @@ class HomeFragment : Fragment() {
 
             viewModel.getUserWithFoods().observe(viewLifecycleOwner, {
                if (it != null)  {
+                   Log.d("Isi It", it.data.toString())
                    when (it.status) {
                        Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
                        Status.SUCCESS -> {
@@ -57,7 +58,7 @@ class HomeFragment : Fragment() {
 
                            binding.calProgress.setProgressFormatter(CalProgressFormatter())
                            binding.calProgress.max = it.data?.user!!.totalCalories
-                           binding.calProgress.progress = getTotalCalConsumed(it.data.foods)
+                           binding.calProgress.progress = getTotalCalConsumed(it.data.foods).toInt()
 
                            binding.tvEatenCal.text = getTotalCalConsumed(it.data.foods).toString()
                            binding.fatProgress.text = getTotalFat(it.data.foods).toString() + " / 100gr"
@@ -83,32 +84,32 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getTotalCarb(foods: List<FoodEntity>): Int {
-        var result = 0
+    private fun getTotalCarb(foods: List<FoodEntity>): Double {
+        var result = 0.toDouble()
         for (i in foods) {
             result += i.carb
         }
         return result
     }
 
-    private fun getTotalProtein(foods: List<FoodEntity>): Int {
-        var result = 0
+    private fun getTotalProtein(foods: List<FoodEntity>): Double {
+        var result = 0.toDouble()
         for (i in foods) {
             result += i.proteins
         }
         return result
     }
 
-    private fun getTotalFat(foods: List<FoodEntity>): Int {
-        var result = 0
+    private fun getTotalFat(foods: List<FoodEntity>): Double {
+        var result = 0.toDouble()
         for (i in foods) {
             result += i.fat
         }
         return result
     }
 
-    private fun getTotalCalConsumed(foods: List<FoodEntity>): Int {
-        var result = 0
+    private fun getTotalCalConsumed(foods: List<FoodEntity>): Double {
+        var result = 0.toDouble()
         for (i in foods) {
             result += i.calories
         }

@@ -28,7 +28,7 @@ data class FoodEntity(
     val fat: Double,
 
     @ColumnInfo(name = "carb")
-    val carb: Int,
+    val carb: Double = 0.toDouble(),
 
     @ColumnInfo(name = "date")
     val date: String,

@@ -31,10 +31,6 @@ abstract class FoodAnalyzerDatabase: RoomDatabase() {
                         super.onCreate(db)
                         Executors.newSingleThreadExecutor().execute {
                             getInstance(context).foodAnalyzerDao().insertUser(DataGenerator.getUser())
-                            val foods = DataGenerator.getFoods()
-                            for (i in foods) {
-                                getInstance(context).foodAnalyzerDao().insertFood(i)
-                            }
                         }
                     }
                 }).build().apply {
