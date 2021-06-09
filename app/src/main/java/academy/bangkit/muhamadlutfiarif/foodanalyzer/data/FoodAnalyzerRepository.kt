@@ -10,6 +10,7 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.utils.AppExecutors
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.vo.Resource
 import androidx.lifecycle.LiveData
 import okhttp3.MultipartBody
+import kotlin.concurrent.thread
 
 class FoodAnalyzerRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -38,7 +39,6 @@ class FoodAnalyzerRepository private constructor(
                     remoteDataSource.getFoodPrediction(image)
 
             public override fun saveCallResult(data: List<FoodResponse>) {
-
                 for(food in data){
                     val foodEntity = FoodEntity(
                             name = food.name,
@@ -49,7 +49,6 @@ class FoodAnalyzerRepository private constructor(
                             userId = 0
                     )
                 }
-
             }
         }.asLiveData()
     }
@@ -69,5 +68,11 @@ class FoodAnalyzerRepository private constructor(
 
             }
         }.asLiveData()
+    }
+
+    fun insertFood(foodEntity: FoodEntity){
+        thread(start = true){
+            localDataSource.insertFood(foodEntity)
+        }
     }
 }

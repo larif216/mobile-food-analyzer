@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import academy.bangkit.muhamadlutfiarif.foodanalyzer.R
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.databinding.FragmentHomeBinding
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.ui.viewmodel.HomeViewModel
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.viewmodel.ViewModelFactory
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.vo.Status
 import android.util.Log

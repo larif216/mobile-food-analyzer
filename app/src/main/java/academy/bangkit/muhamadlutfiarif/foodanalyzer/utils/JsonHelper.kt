@@ -13,7 +13,7 @@ class JsonHelper(private val context: Context) {
 
     companion object {
         const val FILE = "SampleResponse.json"
-        private const val MAIN_DOMAIN = "http://34.101.241.165/"
+        const val MAIN_DOMAIN = "http://34.101.205.136:5000/"
     }
 
     private fun parsingFileToString(fileName: String): String? {
@@ -61,7 +61,7 @@ class JsonHelper(private val context: Context) {
 
         val statusResponse = retrofitService.getFoodFromImage(image).execute()
 
-        val foodResponse = statusResponse.body()!!.textResultResponse
+        val foodResponse = statusResponse.body()!!.listFoodResponse
         return foodResponse!!
     }
 

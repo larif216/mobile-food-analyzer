@@ -8,7 +8,7 @@ data class FoodPredictResponse (
         var status : Int?,
 
         @SerializedName("data")
-        var textResultResponse : List<FoodResponse>?,
+        var listFoodResponse : List<FoodResponse>?,
 )
 
 

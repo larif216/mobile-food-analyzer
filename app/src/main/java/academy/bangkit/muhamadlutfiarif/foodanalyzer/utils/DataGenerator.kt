@@ -27,33 +27,33 @@ class DataGenerator {
             return listOf(
                     FoodEntity(
                             name = "Martabak",
-                            calories = 120,
-                            proteins = 23,
-                            fat = 300,
+                            calories = 120.toDouble(),
+                            proteins = 23.toDouble(),
+                            fat = 300.toDouble(),
                             date = currentDateTime.format(DateTimeFormatter.ISO_DATE),
                             userId = 0
                     ),
                     FoodEntity(
                             name ="Ketoprak",
-                            calories = 90,
-                            proteins = 48,
-                            fat = 110,
+                            calories = 90.toDouble(),
+                            proteins = 48.toDouble(),
+                            fat = 110.toDouble(),
                             date = currentDateTime.format(DateTimeFormatter.ISO_DATE),
                             userId = 0
                     ),
                     FoodEntity(
                             name = "Susu Jahe",
-                            calories = 105,
-                            proteins = 27,
-                            fat = 280,
+                            calories = 105.toDouble(),
+                            proteins = 27.toDouble(),
+                            fat = 280.toDouble(),
                             date = currentDateTime.format(DateTimeFormatter.ISO_DATE),
                             userId = 0
                     ),
                     FoodEntity(
                             name = "Nasi Goreng",
-                            calories = 140,
-                            proteins = 10,
-                            fat = 550,
+                            calories = 140.toDouble(),
+                            proteins = 10.toDouble(),
+                            fat = 550.toDouble(),
                             date = currentDateTime.format(DateTimeFormatter.ISO_DATE),
                             userId = 0
                     ),

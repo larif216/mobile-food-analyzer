@@ -11,3 +11,4 @@ interface RemoteService {
     fun getFoodFromImage(@Part image: MultipartBody.Part)
             : Call<FoodPredictResponse>
 }
+

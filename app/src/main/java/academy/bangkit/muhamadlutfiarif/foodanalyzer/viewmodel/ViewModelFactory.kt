@@ -2,7 +2,7 @@ package academy.bangkit.muhamadlutfiarif.foodanalyzer.viewmodel
 
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.FoodAnalyzerRepository
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.di.Injection
-import academy.bangkit.muhamadlutfiarif.foodanalyzer.ui.home.HomeViewModel
+import academy.bangkit.muhamadlutfiarif.foodanalyzer.ui.viewmodel.HomeViewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

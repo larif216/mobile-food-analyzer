@@ -19,5 +19,8 @@
     <string name="food_image_confirmation">Are you sure to send this image to detect what food you eat today ?</string>
     <string name="food_image_submit">yes, send it</string>
     <string name="food_image_retake">yes, send it</string>
+    <string name="food_add_confirmation">Are you sure to send this image to detect what food you eat today ?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 
 </resources>
