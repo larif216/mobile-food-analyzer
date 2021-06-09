@@ -9,6 +9,7 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.remote.response
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.utils.AppExecutors
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.vo.Resource
 import androidx.lifecycle.LiveData
+import okhttp3.MultipartBody
 
 class FoodAnalyzerRepository private constructor(
     private val remoteDataSource: RemoteDataSource,
@@ -25,29 +26,30 @@ class FoodAnalyzerRepository private constructor(
             }
     }
 
-    override fun getFoodInfo(): LiveData<Resource<FoodEntity>> {
-        return object : NetworkBoundResource<FoodEntity, FoodResponse>(appExecutors) {
-            public override fun loadFromDB(): LiveData<FoodEntity> =
-                localDataSource.getNullFood()
+    override fun getFoodPrediction(image: MultipartBody.Part): LiveData<Resource<List<FoodEntity>>> {
+        return object : NetworkBoundResource<List<FoodEntity>, List<FoodResponse>>(appExecutors) {
+            public override fun loadFromDB(): LiveData<List<FoodEntity>> =
+                    localDataSource.getNullFood()
 
-            public override fun shouldFetch(data: FoodEntity?): Boolean =
-                data == null
+            public override fun shouldFetch(data: List<FoodEntity>?): Boolean =
+                    data == null
 
-            public override fun createCall(): LiveData<ApiResponse<FoodResponse>> =
-                remoteDataSource.getFoodInfo()
+            public override fun createCall(): LiveData<ApiResponse<List<FoodResponse>>> =
+                    remoteDataSource.getFoodPrediction(image)
 
-            public override fun saveCallResult(data: FoodResponse) {
-                val food = FoodEntity(
-                    0,
-                    data.name,
-                    data.calories,
-                    data.proteins,
-                    data.fat,
-                    "Rabu, 9 Juni 2021",
-                    0
-                )
+            public override fun saveCallResult(data: List<FoodResponse>) {
 
-                localDataSource.insertFood(food)
+                for(food in data){
+                    val foodEntity = FoodEntity(
+                            name = food.name,
+                            calories = food.calories,
+                            proteins = food.proteins,
+                            fat = food.fats,
+                            date = "Rabu, 9 Juni 2021",
+                            userId = 0
+                    )
+                }
+
             }
         }.asLiveData()
     }

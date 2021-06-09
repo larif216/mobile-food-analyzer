@@ -5,13 +5,17 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.databinding.ActivityFoodCap
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.ui.bottomsheet.ImageSourceBottomSheetFragment
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
 
 
 class FoodCaptureActivity : AppCompatActivity(), ImageSourceBottomSheetFragment.ItemClickListener  {
@@ -55,7 +59,10 @@ class FoodCaptureActivity : AppCompatActivity(), ImageSourceBottomSheetFragment.
                 Toast.makeText(applicationContext, "select from camera", Toast.LENGTH_LONG).show()
             }
             "Gallery" -> {
-                val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val pickPhoto = Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                )
                 startActivityForResult(pickPhoto, REQUEST_IMAGE_GALLERY)
                 Log.d("select from : > ", "gallery")
                 Toast.makeText(applicationContext, "select from gallery", Toast.LENGTH_LONG).show()
@@ -90,4 +97,13 @@ class FoodCaptureActivity : AppCompatActivity(), ImageSourceBottomSheetFragment.
         binding.btnSelectImageSecondary.visibility = View.VISIBLE
     }
 
+    private fun ConvertBitmapToString(bitmap: Bitmap): String? {
+        var options: BitmapFactory.Options? = null
+        options = BitmapFactory.Options()
+        options.inSampleSize = 3
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 40, byteArrayOutputStream)
+        val byteArrayImage: ByteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
+    }
 }

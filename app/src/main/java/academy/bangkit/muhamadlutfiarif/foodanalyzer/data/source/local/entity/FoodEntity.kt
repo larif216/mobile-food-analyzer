@@ -13,19 +13,19 @@ import java.util.*
 data class FoodEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int = 0,
 
     @ColumnInfo(name = "name")
     val name: String,
 
     @ColumnInfo(name = "calories")
-    val calories: Int,
+    val calories: Double,
 
     @ColumnInfo(name = "proteins")
-    val proteins: Int,
+    val proteins: Double,
 
     @ColumnInfo(name = "fat")
-    val fat: Int,
+    val fat: Double,
 
     @ColumnInfo(name = "date")
     val date: String,

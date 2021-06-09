@@ -4,10 +4,7 @@ import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.Fo
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserEntity
 import academy.bangkit.muhamadlutfiarif.foodanalyzer.data.source.local.entity.UserWithFoods
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 
 @Dao
 interface FoodAnalyzerDao {
@@ -19,8 +16,11 @@ interface FoodAnalyzerDao {
     fun getUserWithFoods(): LiveData<UserWithFoods>
 
     @Query("SELECT * FROM food_table WHERE name = 'dummy'")
-    fun getNullFood(): LiveData<FoodEntity>
+    fun getNullFood(): LiveData<List<FoodEntity>>
 
-    @Insert
+    @Query("SELECT * FROM food_table")
+    fun getAllFood(): LiveData<List<FoodEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFood(food: FoodEntity)
 }

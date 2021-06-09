@@ -19,7 +19,11 @@ class LocalDataSource private constructor(private val mFoodAnalyzerDao: FoodAnal
 
     fun getUserWithFoods(): LiveData<UserWithFoods> = mFoodAnalyzerDao.getUserWithFoods()
 
-    fun getNullFood(): LiveData<FoodEntity> = mFoodAnalyzerDao.getNullFood()
+    fun getNullFood(): LiveData<List<FoodEntity>> = mFoodAnalyzerDao.getNullFood()
+
+    fun getNullListFood(): LiveData<List<FoodEntity>> = mFoodAnalyzerDao.getNullFood()
+
+    fun getAllFood(): LiveData<List<FoodEntity>> = mFoodAnalyzerDao.getAllFood()
 
     fun insertFood(food: FoodEntity) = mFoodAnalyzerDao.insertFood(food)
 }
